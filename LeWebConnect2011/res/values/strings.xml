@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, LeWebConnectActivity!</string>
+    <string name="app_name">LeWebConnect</string>
+    <string name="search_hint">Type in a persone or a company name </string>
+    <string name="filter_name">By Name</string>
+    <string name="filter_company">By Company</string>
+    <string name="filter_country">By Country</string>
+
+</resources>
