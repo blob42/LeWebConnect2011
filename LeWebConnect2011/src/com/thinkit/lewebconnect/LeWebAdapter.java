@@ -226,12 +226,9 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 		boolean facebook = false;
 		boolean twitter = false;
 		boolean linkedin = false;
-		if ( user.getFacebook() != null && !user.getFacebook().equals("null") && !user.getFacebook().isEmpty())
-			facebook = true;
-		if ( user.getLinkedin() != null && !user.getLinkedin().equals("null") && !user.getLinkedin().isEmpty())
-			linkedin = true;
-		if ( user.getTwitter() != null && !user.getTwitter().equals("null")  && !user.getTwitter().isEmpty())
-			twitter = true;
+		facebook =  ( user.getFacebook() != null && !user.getFacebook().equals("null") && !user.getFacebook().isEmpty());
+		linkedin = ( user.getLinkedin() != null && !user.getLinkedin().equals("null") && !user.getLinkedin().isEmpty());
+		twitter =  ( user.getTwitter() != null && !user.getTwitter().equals("null")  && !user.getTwitter().isEmpty());
 		
 		if (facebook && twitter && linkedin)
 			imageView.setImageResource(R.drawable.social_all);
