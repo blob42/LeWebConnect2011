@@ -223,15 +223,15 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 	
 	private void setSocial(View rowview, Attendee user) {
 		// TODO Auto-generated method stub
-		boolean twitter = false;
-		boolean linkedin = false;
-		boolean facebook = false;
+		boolean twitter;
+		boolean linkedin;
+		boolean facebook;
 		
 		ImageView imageView = (ImageView) rowview.findViewById(R.id.icons);
 		
-		facebook =  ( user.getFacebook() != null && !user.getFacebook().equals("null") && !user.getFacebook().isEmpty());
-		linkedin = ( user.getLinkedin() != null && !user.getLinkedin().equals("null") && !user.getLinkedin().isEmpty());
-		twitter =  ( user.getTwitter() != null && !user.getTwitter().equals("null")  && !user.getTwitter().isEmpty());
+		facebook =  user.isHas_facebook();
+		linkedin = user.isHas_linkedin();
+		twitter =  user.isHas_twitter();
 		
 		
 		if (facebook && twitter && linkedin){
@@ -373,7 +373,8 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 								valueText = value.getCountry().toLowerCase();
 							}
 							else {
-								valueText = value.getLname().toLowerCase();
+								valueText = value.getLname().toLowerCase() +
+										" " + value.getFname().toLowerCase();
 							}
 							
 							// First match against the whole, non-splitted value

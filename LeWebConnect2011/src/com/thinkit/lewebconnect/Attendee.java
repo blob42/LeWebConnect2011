@@ -2,6 +2,8 @@ package com.thinkit.lewebconnect;
 
 import java.util.Comparator;
 
+import android.R.bool;
+
 public class Attendee{
 	private int id;
 	private String fname;
@@ -13,6 +15,9 @@ public class Attendee{
     private String facebook;
     private String country;
     private int likes;
+    private boolean has_facebook = false;
+	private boolean has_twitter = false;
+    private boolean has_linkedin = false;
     
     
 
@@ -23,6 +28,9 @@ public class Attendee{
     public static final String LINKEDIN = "linkedin";
     public static final String FACEBOOK = "facebook";
     public static final String COUNTRY = "country";
+    public static final String LIKES = "likes";
+    public static final String ID = "user_id";
+
     
 	
     public Attendee()
@@ -73,6 +81,8 @@ public class Attendee{
 
 	public void setTwitter(String twitter) {
 		this.twitter = twitter;
+		if ( twitter != null && !twitter.equals("null") && !twitter.isEmpty())
+			setHas_twitter(true);
 	}
 
 	public String getUrl() {
@@ -89,14 +99,18 @@ public class Attendee{
 
 	public void setLinkedin(String linkedin) {
 		this.linkedin = linkedin;
+		if ( linkedin != null && !linkedin.equals("null") && !linkedin.isEmpty())
+			setHas_linkedin(true);
 	}
-
+	
 	public String getFacebook() {
 		return facebook;
 	}
 
 	public void setFacebook(String facebook) {
 		this.facebook = facebook;
+		if ( facebook != null && !facebook.equals("null") && !facebook.isEmpty())
+			setHas_facebook(true);
 	}
 
 	public String getCountry() {
@@ -113,6 +127,30 @@ public class Attendee{
 
 	public void setLikes(int likes) {
 		this.likes = likes;
+	}
+	
+	public boolean isHas_facebook() {
+		return has_facebook;
+	}
+
+	public void setHas_facebook(boolean has_facebook) {
+		this.has_facebook = has_facebook;
+	}
+
+	public boolean isHas_twitter() {
+		return has_twitter;
+	}
+
+	public void setHas_twitter(boolean has_twitter) {
+		this.has_twitter = has_twitter;
+	}
+
+	public boolean isHas_linkedin() {
+		return has_linkedin;
+	}
+
+	public void setHas_linkedin(boolean has_linkedin) {
+		this.has_linkedin = has_linkedin;
 	}
 	
 	@Override public String toString() {

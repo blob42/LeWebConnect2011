@@ -84,7 +84,7 @@ public class XMLfunctions {
 
 				HttpResponse httpResponse = httpClient.execute(get);
 				HttpEntity httpEntity = httpResponse.getEntity();
-				line = EntityUtils.toString(httpEntity);
+				line = EntityUtils.toString(httpEntity, "UTF-8");
 				
 			} catch (UnsupportedEncodingException e) {
 				line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";

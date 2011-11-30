@@ -10,6 +10,7 @@ import android.util.Log;
 
 public class WebService {
 	static String XML_DB_URL = "http://leweb.i-think-it.com/get/";
+	static String INCREMENT_USER = "http://leweb.i-think-it.com/inc/?id=";
 	static private String FILENAME = "leweb.xml"; 
 	private int bufsize = 1024;
 	private Context context;

@@ -16,6 +16,7 @@ import com.thinkit.lewebconnect.Attendee.LeWebByLnameComparator;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.sax.Element;
 import android.text.Editable;
@@ -29,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filterable;
 import android.widget.ListView;
@@ -96,6 +98,8 @@ public class Perticipents extends ListActivity {
 			
 			
 			
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -152,6 +156,8 @@ public class Perticipents extends ListActivity {
 			i.putExtra(Attendee.FACEBOOK, user.getFacebook());
 			i.putExtra(Attendee.TWITTER, user.getTwitter());
 			i.putExtra(Attendee.LINKEDIN, user.getLinkedin());
+			i.putExtra(Attendee.LIKES, user.getLikes());
+			i.putExtra(Attendee.ID, user.getId());
 			startActivity(i);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -236,18 +242,49 @@ public class Perticipents extends ListActivity {
 
 	
 	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		LeWebAdapter adapter = (LeWebAdapter) getListAdapter();
+		Attendee user = (Attendee) adapter.users.get(info.position);
 		switch(item.getItemId()) {
 		case FACEBOOK:
 		{
-			AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-			int id = (int) info.position;
-			Toast.makeText(this, String.valueOf(id), Toast.LENGTH_LONG).show();
+			if (user.isHas_facebook())
+			{
+				String url = user.getFacebook();
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				startActivity(i);
+			}
+			else 
+				Toast.makeText(this, "user do not have facebook", Toast.LENGTH_LONG).show();
 			return true;
 		}
 		case TWITTER:
+		{
+			if (user.isHas_twitter()){
+				String url = "http://twitter.com/" + user.getTwitter();
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				startActivity(i);
+			}
+				
+			else 
+				Toast.makeText(this, "user do not have twitter", Toast.LENGTH_LONG).show();
 			return true;
+		}
 		case LINKEDIN:
+		{
+			if (user.isHas_linkedin())
+			{
+				String url = user.getLinkedin();
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				startActivity(i);
+			}
+			else 
+				Toast.makeText(this, "user do not have linkedin", Toast.LENGTH_LONG).show();
 			return true;
+		}
 		}
 		return super.onContextItemSelected(item);
 	}
@@ -261,7 +298,9 @@ public class Perticipents extends ListActivity {
 		String country = attrs.getNamedItem("country").getTextContent();
 		String facebook = attrs.getNamedItem("facebook").getTextContent();
 		String twitter = attrs.getNamedItem("twitter").getTextContent();
+		String linkedin = attrs.getNamedItem("linkedin").getTextContent();
 		String likes = attrs.getNamedItem("likes").getTextContent();
+		String id = attrs.getNamedItem("id").getTextContent();
 		
 		Attendee user = new Attendee();
 		user.setFname(fname);
@@ -270,7 +309,9 @@ public class Perticipents extends ListActivity {
 		user.setCountry(country);
 		user.setFacebook(facebook);
 		user.setTwitter(twitter);
+		user.setLinkedin(linkedin);
 		user.setLikes(Integer.valueOf(likes));
+		user.setId(Integer.valueOf(id));
 
 		return user;
     }

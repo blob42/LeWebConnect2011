@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#002531" >
+        android:background="#002531"
+        android:baselineAligned="false" >
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -23,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="Large Text"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="60px" android:paddingBottom="20px"/>
+                android:textSize="40px" android:paddingBottom="20px"/>
 
             <TextView
                 android:id="@+id/profile_company"
@@ -32,7 +33,7 @@
                 android:layout_marginTop="2px"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="35px" android:paddingBottom="20px"/>
+                android:textSize="25px" android:paddingBottom="20px"/>
 
             <TextView
                 android:id="@+id/profile_country"
@@ -41,8 +42,31 @@
                 android:layout_marginTop="2px"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="30px" />
+                android:textSize="25px" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" android:layout_weight="10">
+
+            <TextView
+                android:id="@+id/profile_likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="20px" android:drawingCacheQuality="auto" android:layout_marginTop="20px" android:layout_marginLeft="30px" android:drawableRight="@drawable/ic_favorites_tiny" android:drawablePadding="10px"/>
+
+            <Button
+                android:id="@+id/like_button"
+                android:layout_width="42dp"
+                android:layout_height="30dp"
+                android:text="Like" android:layout_marginTop="10px" android:layout_marginLeft="15px" android:textSize="14px" android:background="#3299bb" android:layout_weight="0"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
