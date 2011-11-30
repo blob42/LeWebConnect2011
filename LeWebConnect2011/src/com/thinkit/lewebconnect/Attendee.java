@@ -12,6 +12,18 @@ public class Attendee{
     private String linkedin;
     private String facebook;
     private String country;
+    private int likes;
+    
+    
+
+	public static final String LNAME = "lname";
+    public static final String FNAME = "fname";
+    public static final String COMPANY = "company";
+    public static final String TWITTER = "twitter";
+    public static final String LINKEDIN = "linkedin";
+    public static final String FACEBOOK = "facebook";
+    public static final String COUNTRY = "country";
+    
 	
     public Attendee()
 	{
@@ -93,6 +105,14 @@ public class Attendee{
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 	
 	@Override public String toString() {

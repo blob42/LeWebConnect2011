@@ -140,10 +140,18 @@ public class Perticipents extends ListActivity {
 		
 		try {
 			Intent i = new Intent(this, UserProfile.class);
-			Attendee user = (Attendee) l.getItemAtPosition(position);
-			Toast.makeText(this, user.getLname(), Toast.LENGTH_LONG).show();
+			LeWebAdapter adapter = (LeWebAdapter) l.getAdapter();
+			Attendee user = (Attendee) adapter.users.get(position);
+
+//			Toast.makeText(this, user.getCompany(), Toast.LENGTH_LONG).show();
 			
-			i.putExtra("user_name", user.getLinkedin());
+			i.putExtra(Attendee.LNAME, user.getLname());
+			i.putExtra(Attendee.FNAME, user.getFname());
+			i.putExtra(Attendee.COUNTRY, user.getCountry());
+			i.putExtra(Attendee.COMPANY, user.getCompany());
+			i.putExtra(Attendee.FACEBOOK, user.getFacebook());
+			i.putExtra(Attendee.TWITTER, user.getTwitter());
+			i.putExtra(Attendee.LINKEDIN, user.getLinkedin());
 			startActivity(i);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -253,6 +261,7 @@ public class Perticipents extends ListActivity {
 		String country = attrs.getNamedItem("country").getTextContent();
 		String facebook = attrs.getNamedItem("facebook").getTextContent();
 		String twitter = attrs.getNamedItem("twitter").getTextContent();
+		String likes = attrs.getNamedItem("likes").getTextContent();
 		
 		Attendee user = new Attendee();
 		user.setFname(fname);
@@ -261,6 +270,8 @@ public class Perticipents extends ListActivity {
 		user.setCountry(country);
 		user.setFacebook(facebook);
 		user.setTwitter(twitter);
+		user.setLikes(Integer.valueOf(likes));
+
 		return user;
     }
  }

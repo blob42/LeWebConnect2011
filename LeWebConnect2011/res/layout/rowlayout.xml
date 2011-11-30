@@ -24,62 +24,55 @@
             android:src="@drawable/no_all" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/linearLayout3"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" android:layout_weight="4">
+            android:layout_weight="4" >
 
-            <TextView
-                android:id="@+id/name_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="40px"/>
-
-            <TextView
-                android:id="@+id/company_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2px"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="25px" />
-
-            <TextView
-                android:id="@+id/country_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2px"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="25px" />
-
-            <TextView
-                android:id="@+id/fb_text"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" android:visibility="gone"/>
+                android:layout_weight="4"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Large Text"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/company_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2px"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="25px" />
+
+                <TextView
+                    android:id="@+id/country_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2px"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="25px" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/id_text"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" android:visibility="gone"/>
-
-            <TextView
-                android:id="@+id/tw_text"
+                android:id="@+id/likes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" android:visibility="gone"/>
-
-            <TextView
-                android:id="@+id/ld_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" android:visibility="gone"/>
+                android:layout_weight="1"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceSmall" android:layout_marginTop="10px" android:layout_marginRight="20px" android:drawableBottom="@drawable/ic_favorites_tiny"/>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

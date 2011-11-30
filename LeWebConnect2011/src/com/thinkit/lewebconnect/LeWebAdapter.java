@@ -19,7 +19,7 @@ import android.widget.TextView;
 public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 	
 	private final Context context;
-	private ArrayList<Attendee> users;
+	public ArrayList<Attendee> users;
 	
 	/**
      * Lock used to modify the content of {@link #mObjects}. Any write operation
@@ -188,12 +188,15 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 					TextView name_text = (TextView) rowview.findViewById(R.id.name_text);
 					TextView company = (TextView) rowview.findViewById(R.id.company_text);
 					TextView country = (TextView) rowview.findViewById(R.id.country_text);
+					TextView likes = (TextView) rowview.findViewById(R.id.likes);
 					if (name_text != null)
 						name_text.setText(user.getLname() + " " + user.getFname());
 					if (company != null)
 						company.setText(user.getCompany());
 					if (country != null)
 						country.setText(user.getCountry());
+					if (likes != null)
+						likes.setText(String.valueOf(user.getLikes()));
 					setSocial(rowview,  user);
 					if(enableSections && getSectionForPosition(position) != getSectionForPosition(position - 1))
 		            {
@@ -220,58 +223,37 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 	
 	private void setSocial(View rowview, Attendee user) {
 		// TODO Auto-generated method stub
-		boolean facebook = false;
 		boolean twitter = false;
 		boolean linkedin = false;
+		boolean facebook = false;
 		
 		ImageView imageView = (ImageView) rowview.findViewById(R.id.icons);
-		TextView id = (TextView) rowview.findViewById(R.id.id_text);
-		TextView fb = (TextView) rowview.findViewById(R.id.fb_text);
-		TextView tw = (TextView) rowview.findViewById(R.id.tw_text);
-		TextView ld = (TextView) rowview.findViewById(R.id.ld_text);
-		
-		id.setText(String.valueOf(user.getId()));
 		
 		facebook =  ( user.getFacebook() != null && !user.getFacebook().equals("null") && !user.getFacebook().isEmpty());
 		linkedin = ( user.getLinkedin() != null && !user.getLinkedin().equals("null") && !user.getLinkedin().isEmpty());
 		twitter =  ( user.getTwitter() != null && !user.getTwitter().equals("null")  && !user.getTwitter().isEmpty());
 		
-		fb.setText("null");
-		ld.setText("null");
-		tw.setText("null");
 		
 		if (facebook && twitter && linkedin){
 			imageView.setImageResource(R.drawable.social_all);
-			fb.setText(user.getFacebook());
-			tw.setText(user.getTwitter());
-			ld.setText(user.getLinkedin());
 		}
 		else if (facebook && twitter) {
 			imageView.setImageResource(R.drawable.no_linkedin);
-			fb.setText(user.getFacebook());
-			tw.setText(user.getTwitter());
 		}
 		else if (facebook && linkedin) {
 			imageView.setImageResource(R.drawable.no_twitter);
-			fb.setText(user.getFacebook());
-			ld.setText(user.getLinkedin());
 		}
 		else if (twitter && linkedin) {
 			imageView.setImageResource(R.drawable.no_fb);
-			tw.setText(user.getTwitter());
-			ld.setText(user.getLinkedin());
 		}
 		else if (twitter) {
 			imageView.setImageResource(R.drawable.twitter);
-			tw.setText(user.getTwitter());
 		}
 		else if (facebook) {
 			imageView.setImageResource(R.drawable.fb);
-			fb.setText(user.getFacebook());
 		}
 		else if (linkedin) {
 			imageView.setImageResource(R.drawable.linkedin);
-			ld.setText(user.getLinkedin());
 		}
 		else 
 			imageView.setImageResource(R.drawable.no_all);
