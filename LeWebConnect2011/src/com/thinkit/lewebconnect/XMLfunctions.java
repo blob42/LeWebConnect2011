@@ -80,6 +80,7 @@ public class XMLfunctions {
 				
 				DefaultHttpClient httpClient = new DefaultHttpClient();
 				HttpGet get = new HttpGet(WebService.XML_DB_URL);
+				get.setHeader("charset", "utf-8");
 
 				HttpResponse httpResponse = httpClient.execute(get);
 				HttpEntity httpEntity = httpResponse.getEntity();
