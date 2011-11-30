@@ -11,7 +11,7 @@
         android:id="@+building_list/search_box"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:hint="type to filter" 
+        android:hint="type to filter or use menu" 
         android:maxLines="1" />
 
     <ListView

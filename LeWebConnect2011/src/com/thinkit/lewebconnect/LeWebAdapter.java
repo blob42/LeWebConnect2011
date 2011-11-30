@@ -194,10 +194,7 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 						company.setText(user.getCompany());
 					if (country != null)
 						country.setText(user.getCountry());
-					ImageView imageView = (ImageView) rowview.findViewById(R.id.icons);
-					setImage(imageView, user);
-//					imageView.setVisibility(View.GONE);
-					
+					setSocial(rowview,  user);
 					if(enableSections && getSectionForPosition(position) != getSectionForPosition(position - 1))
 		            {
 //						Log.d("getView", "Setting Header ........ " + String.valueOf(position));
@@ -221,30 +218,62 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 		}
 	
 	
-	private void setImage(ImageView imageView, Attendee user) {
+	private void setSocial(View rowview, Attendee user) {
 		// TODO Auto-generated method stub
 		boolean facebook = false;
 		boolean twitter = false;
 		boolean linkedin = false;
+		
+		ImageView imageView = (ImageView) rowview.findViewById(R.id.icons);
+		TextView id = (TextView) rowview.findViewById(R.id.id_text);
+		TextView fb = (TextView) rowview.findViewById(R.id.fb_text);
+		TextView tw = (TextView) rowview.findViewById(R.id.tw_text);
+		TextView ld = (TextView) rowview.findViewById(R.id.ld_text);
+		
+		id.setText(String.valueOf(user.getId()));
+		
 		facebook =  ( user.getFacebook() != null && !user.getFacebook().equals("null") && !user.getFacebook().isEmpty());
 		linkedin = ( user.getLinkedin() != null && !user.getLinkedin().equals("null") && !user.getLinkedin().isEmpty());
 		twitter =  ( user.getTwitter() != null && !user.getTwitter().equals("null")  && !user.getTwitter().isEmpty());
 		
-		if (facebook && twitter && linkedin)
+		fb.setText("null");
+		ld.setText("null");
+		tw.setText("null");
+		
+		if (facebook && twitter && linkedin){
 			imageView.setImageResource(R.drawable.social_all);
-		else if (facebook && twitter)
+			fb.setText(user.getFacebook());
+			tw.setText(user.getTwitter());
+			ld.setText(user.getLinkedin());
+		}
+		else if (facebook && twitter) {
 			imageView.setImageResource(R.drawable.no_linkedin);
-		else if (facebook && linkedin)
+			fb.setText(user.getFacebook());
+			tw.setText(user.getTwitter());
+		}
+		else if (facebook && linkedin) {
 			imageView.setImageResource(R.drawable.no_twitter);
-		else if (twitter && linkedin)
+			fb.setText(user.getFacebook());
+			ld.setText(user.getLinkedin());
+		}
+		else if (twitter && linkedin) {
 			imageView.setImageResource(R.drawable.no_fb);
-		else if (twitter)
+			tw.setText(user.getTwitter());
+			ld.setText(user.getLinkedin());
+		}
+		else if (twitter) {
 			imageView.setImageResource(R.drawable.twitter);
-		else if (facebook)
+			tw.setText(user.getTwitter());
+		}
+		else if (facebook) {
 			imageView.setImageResource(R.drawable.fb);
-		else if (linkedin)
+			fb.setText(user.getFacebook());
+		}
+		else if (linkedin) {
 			imageView.setImageResource(R.drawable.linkedin);
-		else
+			ld.setText(user.getLinkedin());
+		}
+		else 
 			imageView.setImageResource(R.drawable.no_all);
 	}
 

@@ -30,12 +30,6 @@ public class LeWebConnect extends TabActivity{
 					.setContent(intent);
 			tabHost.addTab(spec);
 			// Do the same for the other tabs
-			intent = new Intent().setClass(this, Search.class);
-			spec = tabHost
-					.newTabSpec("search")
-					.setIndicator("", res.getDrawable(R.drawable.ic_tab_search))
-					.setContent(intent);
-			tabHost.addTab(spec);
 			intent = new Intent().setClass(this, Likes.class);
 			spec = tabHost
 					.newTabSpec("likes")

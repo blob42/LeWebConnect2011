@@ -15,6 +15,7 @@ import com.thinkit.lewebconnect.Attendee.LeWebByLnameComparator;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.sax.Element;
 import android.text.Editable;
@@ -31,12 +32,18 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 
 
 public class Perticipents extends ListActivity {
     /** Called when the activity is first created. */
+	
+	private static final int FACEBOOK = Menu.FIRST;
+    private static final int TWITTER = Menu.FIRST + 1;
+    private static final int LINKEDIN = Menu.FIRST + 2;
 	
 	private static String TAG = "Perticipents";
 	private ArrayList<Attendee> users;
@@ -71,7 +78,6 @@ public class Perticipents extends ListActivity {
 			Collections.sort(users, new LeWebByLnameComparator());
 			
 			
-			
 			setContentView(R.layout.perticipents);
 			filterText= (EditText) findViewById(R.building_list.search_box);
 			filterText.addTextChangedListener(filterTextWatcher);
@@ -80,12 +86,13 @@ public class Perticipents extends ListActivity {
 			ListView lv = getListView();
 	        lv.setFastScrollEnabled(true);
 	        lv.setTextFilterEnabled(false);
+	        registerForContextMenu(lv);
 			
 			adapter =  new LeWebAdapter(this, users, true, false, false);
 			
 
 			setListAdapter(adapter);
-			
+			registerForContextMenu(getListView());
 			
 			
 			
@@ -96,7 +103,7 @@ public class Perticipents extends ListActivity {
     }
     
     
-    private TextWatcher filterTextWatcher = new TextWatcher() {
+	private TextWatcher filterTextWatcher = new TextWatcher() {
     	public void afterTextChanged(Editable s) {
         }
 
@@ -124,7 +131,27 @@ public class Perticipents extends ListActivity {
         filterText.removeTextChangedListener(filterTextWatcher);
     }
     
-    	
+    
+    
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		
+		try {
+			Intent i = new Intent(this, UserProfile.class);
+			Attendee user = (Attendee) l.getItemAtPosition(position);
+			Toast.makeText(this, user.getLname(), Toast.LENGTH_LONG).show();
+			
+			i.putExtra("user_name", user.getLinkedin());
+			startActivity(i);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
@@ -191,7 +218,32 @@ public class Perticipents extends ListActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	public void onCreateContextMenu(ContextMenu menu, View v,
+	        ContextMenu.ContextMenuInfo menuInfo) {
+	    super.onCreateContextMenu((ContextMenu) menu, v, menuInfo);
+	    menu.add(0, FACEBOOK, 0, R.string.facebook_menu);
+	    menu.add(0, TWITTER, 0, R.string.twitter_menu);
+	    menu.add(0, LINKEDIN, 0, R.string.linkedin_menu);
+	}
 
+	
+	public boolean onContextItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+		case FACEBOOK:
+		{
+			AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+			int id = (int) info.position;
+			Toast.makeText(this, String.valueOf(id), Toast.LENGTH_LONG).show();
+			return true;
+		}
+		case TWITTER:
+			return true;
+		case LINKEDIN:
+			return true;
+		}
+		return super.onContextItemSelected(item);
+	}
+	
 	public Attendee NodeToAttendee(Node userNode)
     {
     	NamedNodeMap attrs = userNode.getAttributes();

@@ -2,9 +2,17 @@
 <resources>
     <string name="hello">Hello World, LeWebConnectActivity!</string>
     <string name="app_name">LeWebConnect</string>
-    <string name="search_hint">Type in a persone or a company name </string>
+    <string name="search_hint">type to filter or use menu</string>
     <string name="filter_name">By Name</string>
     <string name="filter_company">By Company</string>
     <string name="filter_country">By Country</string>
+    <string name="facebook_menu">Facebook</string>
+    <string name="linkedin_menu">Linkedin</string>
+    <string name="twitter_menu">Twitter</string>
+    <string name="user_profile">User Profile</string>
+    <string name="id_text">id_text</string>
+    <string name="fb_text">fb_text</string>
+    <string name="ld_text">ld_text</string>
+    <string name="tw_text">tw_text</string>
 
 </resources>
