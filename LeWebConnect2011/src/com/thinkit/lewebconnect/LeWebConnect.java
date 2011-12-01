@@ -30,17 +30,17 @@ public class LeWebConnect extends TabActivity{
 					.setContent(intent);
 			tabHost.addTab(spec);
 			// Do the same for the other tabs
-			intent = new Intent().setClass(this, Likes.class);
+			intent = new Intent().setClass(this, ThinkIT.class);
 			spec = tabHost
-					.newTabSpec("likes")
+					.newTabSpec("thinkit")
 					.setIndicator("",
-							res.getDrawable(R.drawable.ic_tab_favorites))
+							res.getDrawable(R.drawable.ic_tab_thinkit))
 					.setContent(intent);
 			tabHost.addTab(spec);
 			tabHost.setCurrentTab(0);
 		} catch (Exception e) {
 			// TODO: handle exception
-			Log.d("Error", e.toString());
+//			Log.d("Error", e.toString());
 			e.printStackTrace();
 		}
     }

@@ -2,6 +2,7 @@ package com.thinkit.lewebconnect;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,6 +16,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +53,17 @@ public class UserProfile extends Activity {
 	             }
 	         });
 	         
+	         String twitter_name = extras.getString(Attendee.TWITTER);
+	         if (twitter_name != null)
+	         {
+	        	 
+	        	 ArrayList<Tweet> tweets = Tweet.getTweets(twitter_name);
+	        	 ListView lv = (ListView) findViewById(R.id.tweets_list);
+	        	 lv.setAdapter(new TweetsAdapter(this, R.layout.tweet_row, tweets));
+	         }
+	         
+	          
+	         
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,4 +84,6 @@ public class UserProfile extends Activity {
 		
 	}
 
+	
+	
 }

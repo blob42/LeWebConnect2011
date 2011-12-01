@@ -48,7 +48,7 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 			boolean enableSections, boolean companySections, boolean countrySections)  {
 		super(context, R.layout.rowlayout, users);
 		
-		Log.d("LeWebAdapter", "LeWebAdapter constructor");
+//		Log.d("LeWebAdapter", "LeWebAdapter constructor");
 		this.context = context;
 		this.users = users;
 		this.filter = new LeWebFilter();
@@ -148,7 +148,7 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
 	public void notifyDataSetChanged(){
 		if (enableSections)
 		{
-			Log.d("notifyDataSetChanged", "...");
+//			Log.d("notifyDataSetChanged", "...");
 			buildHashIndexer();
 			buildSections();	
 		}
@@ -161,7 +161,7 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
     {
 		if(enableSections)
         {
-			Log.d("notifyDataSetInvalidated", "...");
+//			Log.d("notifyDataSetInvalidated", "...");
 
 			buildHashIndexer();
 			buildSections();
@@ -276,10 +276,10 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
             return alphaIndexer.get(letter);
 		} catch (Exception e) {
 			// TODO: handle exception
-			Log.d("getPositionForSection", String.valueOf(section));
-			Log.d("getPositionForSection", "alphaindexer: " + alphaIndexer.toString());
-			Log.d("getPositionForSection", "sections: " + getSections());
-			//e.printStackTrace();
+//			Log.d("getPositionForSection", String.valueOf(section));
+//			Log.d("getPositionForSection", "alphaindexer: " + alphaIndexer.toString());
+//			Log.d("getPositionForSection", "sections: " + getSections());
+			e.printStackTrace();
 		}
         return 0;
     }
@@ -338,7 +338,7 @@ public class LeWebAdapter extends ArrayAdapter<Attendee>  {
         protected FilterResults performFiltering(CharSequence constraint) {
             // NOTE: this function is *always* called from a background thread, and
             // not the UI thread.
-        	Log.d("Filter", "Filter .....");
+//        	Log.d("Filter", "Filter .....");
             
             FilterResults results = new FilterResults();
             

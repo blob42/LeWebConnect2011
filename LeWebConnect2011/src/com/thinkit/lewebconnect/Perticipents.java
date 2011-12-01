@@ -119,11 +119,11 @@ public class Perticipents extends ListActivity {
 		public void onTextChanged(CharSequence s, int start, int before,
                 int count) {
         	ListView lv = getListView();
-        	Log.d("onTextChanged", s.toString());
-        	Log.d("getCount", String.valueOf(lv.getAdapter().getCount()));
+//        	Log.d("onTextChanged", s.toString());
+//        	Log.d("getCount", String.valueOf(lv.getAdapter().getCount()));
         	adapter = (ArrayAdapter<Attendee>) lv.getAdapter();
     		adapter.getFilter().filter(s);
-        	Log.d("getCount", String.valueOf(lv.getAdapter().getCount()));
+//        	Log.d("getCount", String.valueOf(lv.getAdapter().getCount()));
         }
     };
     
@@ -147,14 +147,15 @@ public class Perticipents extends ListActivity {
 			LeWebAdapter adapter = (LeWebAdapter) l.getAdapter();
 			Attendee user = (Attendee) adapter.users.get(position);
 
-//			Toast.makeText(this, user.getCompany(), Toast.LENGTH_LONG).show();
-			
 			i.putExtra(Attendee.LNAME, user.getLname());
 			i.putExtra(Attendee.FNAME, user.getFname());
 			i.putExtra(Attendee.COUNTRY, user.getCountry());
 			i.putExtra(Attendee.COMPANY, user.getCompany());
 			i.putExtra(Attendee.FACEBOOK, user.getFacebook());
-			i.putExtra(Attendee.TWITTER, user.getTwitter());
+			if (user.isHas_twitter())
+			{
+				i.putExtra(Attendee.TWITTER, user.getTwitter());
+			}
 			i.putExtra(Attendee.LINKEDIN, user.getLinkedin());
 			i.putExtra(Attendee.LIKES, user.getLikes());
 			i.putExtra(Attendee.ID, user.getId());
