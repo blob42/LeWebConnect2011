@@ -29,6 +29,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -235,10 +236,18 @@ public class Perticipents extends ListActivity {
 
 	public void onCreateContextMenu(ContextMenu menu, View v,
 	        ContextMenu.ContextMenuInfo menuInfo) {
-	    super.onCreateContextMenu((ContextMenu) menu, v, menuInfo);
-	    menu.add(0, FACEBOOK, 0, R.string.facebook_menu);
+		super.onCreateContextMenu((ContextMenu) menu, v, menuInfo);
+	    AdapterView.AdapterContextMenuInfo info = 
+	    		(AdapterView.AdapterContextMenuInfo) menuInfo;
+	    LeWebAdapter adapter = (LeWebAdapter) getListAdapter();
+	    Attendee user = (Attendee) adapter.users.get(info.position);
+	    if (user.isHas_facebook())
+	    	menu.add(0, FACEBOOK, 0, R.string.facebook_menu);
+	    if (user.isHas_twitter())
 	    menu.add(0, TWITTER, 0, R.string.twitter_menu);
-	    menu.add(0, LINKEDIN, 0, R.string.linkedin_menu);
+	    if (user.isHas_linkedin())
+	    	menu.add(0, LINKEDIN, 0, R.string.linkedin_menu);
+	    
 	}
 
 	

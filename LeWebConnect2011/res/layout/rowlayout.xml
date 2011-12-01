@@ -66,10 +66,9 @@
             <TextView
                 android:id="@+id/likes"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" android:layout_marginTop="10px" android:layout_marginRight="20px" android:drawableBottom="@drawable/ic_favorites_tiny"/>
+                android:textAppearance="?android:attr/textAppearanceSmall" android:drawableRight="@drawable/ic_favorites_tiny" android:gravity="center" android:layout_marginRight="10px"/>
 
         </LinearLayout>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, LeWebConnectActivity!</string>
-    <string name="app_name">LeWebConnect</string>
+    <string name="app_name">LeWeb Connect</string>
     <string name="search_hint">type to filter or use menu</string>
     <string name="filter_name">By Name</string>
     <string name="filter_company">By Company</string>
