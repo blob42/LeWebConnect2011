@@ -9,12 +9,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" android:background="#025874"/>
+        android:textAppearance="?android:attr/textAppearanceLarge" android:background="#000000" android:textColor="#F5D94D"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:background="#002531">
+        android:layout_height="wrap_content" android:background="@drawable/customshape">
 
         <ImageView
             android:id="@+id/icons"
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="Large Text"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="40px" />
+                    android:textSize="40px" android:textColor="#152c4d"/>
 
                 <TextView
                     android:id="@+id/company_text"
@@ -51,7 +51,7 @@
                     android:layout_marginTop="2px"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="25px" />
+                    android:textSize="25px" android:textColor="#076B9F"/>
 
                 <TextView
                     android:id="@+id/country_text"
@@ -60,7 +60,7 @@
                     android:layout_marginTop="2px"
                     android:text="Medium Text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="25px" />
+                    android:textSize="25px" android:textColor="#A32428"/>
             </LinearLayout>
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceSmall" android:drawableRight="@drawable/ic_favorites_tiny" android:gravity="center" android:layout_marginRight="10px"/>
+                android:textAppearance="?android:attr/textAppearanceSmall" android:drawableRight="@drawable/ic_favorites_tiny" android:gravity="center" android:layout_marginRight="10px" android:textColor="#A32428"/>
 
         </LinearLayout>
 

@@ -239,7 +239,8 @@ public class Perticipents extends ListActivity {
 		super.onCreateContextMenu((ContextMenu) menu, v, menuInfo);
 	    AdapterView.AdapterContextMenuInfo info = 
 	    		(AdapterView.AdapterContextMenuInfo) menuInfo;
-	    LeWebAdapter adapter = (LeWebAdapter) getListAdapter();
+	    LeWebAdapter adapter = (LeWebAdapter) this.adapter;
+	    
 	    Attendee user = (Attendee) adapter.users.get(info.position);
 	    if (user.isHas_facebook())
 	    	menu.add(0, FACEBOOK, 0, R.string.facebook_menu);
@@ -253,7 +254,7 @@ public class Perticipents extends ListActivity {
 	
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		LeWebAdapter adapter = (LeWebAdapter) getListAdapter();
+		LeWebAdapter adapter = (LeWebAdapter) this.adapter;
 		Attendee user = (Attendee) adapter.users.get(info.position);
 		switch(item.getItemId()) {
 		case FACEBOOK:

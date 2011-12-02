@@ -8,7 +8,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#002531"
+        android:background="@drawable/customshape"
         android:baselineAligned="false" >
 
         <LinearLayout
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="Large Text"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="40px" android:paddingBottom="20px"/>
+                android:textSize="40px" android:paddingBottom="20px" android:textColor="#152c4d"/>
 
             <TextView
                 android:id="@+id/profile_company"
@@ -33,7 +33,7 @@
                 android:layout_marginTop="2px"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="25px" android:paddingBottom="20px"/>
+                android:textSize="25px" android:paddingBottom="20px" android:textColor="#076B9F"/>
 
             <TextView
                 android:id="@+id/profile_country"
@@ -42,7 +42,7 @@
                 android:layout_marginTop="2px"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="25px" />
+                android:textSize="25px" android:textColor="#A32428"/>
         </LinearLayout>
 
         <LinearLayout
@@ -57,13 +57,13 @@
                 android:layout_height="wrap_content"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="20px" android:drawingCacheQuality="auto" android:layout_marginTop="20px" android:layout_marginLeft="30px" android:drawableRight="@drawable/ic_favorites_tiny" android:drawablePadding="10px"/>
+                android:textSize="20px" android:drawingCacheQuality="auto" android:layout_marginTop="20px" android:layout_marginLeft="30px" android:drawableRight="@drawable/ic_favorites_tiny" android:drawablePadding="10px" android:textColor="#A32428"/>
 
             <Button
                 android:id="@+id/like_button"
                 android:layout_width="42dp"
                 android:layout_height="30dp"
-                android:text="Like" android:layout_marginTop="10px" android:layout_marginLeft="15px" android:textSize="14px" android:background="#3299bb" android:layout_weight="0"/>
+                android:text="Like" android:layout_marginTop="10px" android:layout_marginLeft="15px" android:textSize="20px" android:background="@drawable/customshape2" android:layout_weight="0" android:textColor="#152c4d"/>
 
         </LinearLayout>
 
@@ -74,7 +74,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Last Tweets"
-        android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:background="#002531" android:gravity="center" android:paddingTop="20px"/>
+        android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center" android:background="#000000" android:gravity="center" android:paddingTop="10px" android:textColor="#F5D94D" android:paddingBottom="10px"/>
 
 	<ListView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/tweets_list">
 	    
