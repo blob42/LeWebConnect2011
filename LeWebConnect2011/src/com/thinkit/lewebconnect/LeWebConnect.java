@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 import android.widget.TabHost;
 import android.widget.TextView;
 

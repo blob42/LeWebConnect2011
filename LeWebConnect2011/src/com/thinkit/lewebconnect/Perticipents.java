@@ -14,9 +14,11 @@ import com.thinkit.lewebconnect.Attendee.LeWebByCountryComparator;
 import com.thinkit.lewebconnect.Attendee.LeWebByLnameComparator;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.sax.Element;
 import android.text.Editable;
@@ -35,6 +37,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -52,60 +55,32 @@ public class Perticipents extends ListActivity {
 	private ArrayList<Attendee> users;
 	private EditText filterText = null;
 	ArrayAdapter<Attendee> adapter = null;
+	private ListView lv;
+	private Context mContext;
+	private ProgressDialog mDialog;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+
     	
-    	
-		String xml;
-		xml = XMLfunctions.getXML();
-		Document doc = XMLfunctions.XMLfromString(xml);
-		int numResults = XMLfunctions.numResults(doc);
-		//Log.d(TAG, "numResults length: " + String.valueOf(numResults));
-		
-		if((numResults <= 0)) {
-			Toast.makeText(this, "Please make sure connection is available !", Toast.LENGTH_LONG).show();
-            finish();
-		}
-		
-		
-		NodeList nodes = doc.getElementsByTagName("user");
-		try {
-			users = new ArrayList<Attendee>();
-			//fill in the list items from the XML document
-			for (int i = 0; i < nodes.getLength(); i++) {
-				Node e = (Node)nodes.item(i);
-				users.add(NodeToAttendee(e));
-				}
-			Collections.sort(users, new LeWebByLnameComparator());
-			
-			
-			setContentView(R.layout.perticipents);
+    		mContext = this;
+    		mDialog = new ProgressDialog(mContext);
+    		setContentView(R.layout.perticipents);
+    		
+    		new getXmlTask().execute();
 			filterText= (EditText) findViewById(R.building_list.search_box);
 			filterText.addTextChangedListener(filterTextWatcher);
 			
-			
-			ListView lv = getListView();
+			lv = getListView();
 	        lv.setFastScrollEnabled(true);
 	        lv.setTextFilterEnabled(false);
 	        registerForContextMenu(lv);
-			
-			adapter =  new LeWebAdapter(this, users, true, false, false);
-			
-
-			setListAdapter(adapter);
-			registerForContextMenu(getListView());
-			
-			
-			
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+	        
+	        
     }
+    
+    
     
     
 	private TextWatcher filterTextWatcher = new TextWatcher() {
@@ -326,4 +301,57 @@ public class Perticipents extends ListActivity {
 
 		return user;
     }
- }
+	
+	private class getXmlTask extends AsyncTask<Void, Void, ArrayList<Attendee>> {
+		
+		@Override
+		protected void onPreExecute(){
+			mDialog.setMessage("Loading data");
+			mDialog.show();
+		
+		}
+		
+		@Override
+		protected ArrayList<Attendee> doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			String xml;
+    		xml = XMLfunctions.getXML();
+    		Document doc = XMLfunctions.XMLfromString(xml);
+    		int numResults = XMLfunctions.numResults(doc);
+    		//Log.d(TAG, "numResults length: " + String.valueOf(numResults));
+    		
+    		if((numResults <= 0)) {
+//    			Toast.makeText(this, "Please make sure connection is available !", Toast.LENGTH_LONG).show();
+//                finish();
+    			return null;
+    		}
+    		
+    		
+    		NodeList nodes = doc.getElementsByTagName("user");
+    		try {
+    			users = new ArrayList<Attendee>();
+    			//fill in the list items from the XML document
+    			for (int i = 0; i < nodes.getLength(); i++) {
+    				Node e = (Node)nodes.item(i);
+    				users.add(NodeToAttendee(e));
+    				}
+    			Collections.sort(users, new LeWebByLnameComparator());
+    			
+    		}  catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+    		}
+    		return users;
+		}
+		
+		@Override
+		protected void onPostExecute(final ArrayList<Attendee> users){
+			adapter =  new LeWebAdapter(mContext, users, true, false, false);
+			
+			mDialog.hide();
+			setListAdapter(adapter);
+			registerForContextMenu(getListView());
+			
+		}
+	}
+}
